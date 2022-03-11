@@ -27,4 +27,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 :- module(lua54,
-          []).
+    [ lua_newstate/1                      % -L
+    ]).
+:- use_foreign_library(foreign(lua54)).
+
+%!  lua_newstate(-L) is det.
+%
+%   Opens a new Lua state at L.

@@ -7,7 +7,7 @@ lua_newstate_1(term_t l)
 
 install_t
 install_lua54()
-{ ;
+{ PL_register_foreign("lua_newstate", 1, lua_newstate_1, 0);
 }
 
 install_t
