@@ -1,6 +1,3 @@
-#include <SWI-Prolog.h>
-#include <SWI-Stream.h>
-
 #include "lua_State.h"
 
 foreign_t
