@@ -12,7 +12,7 @@ lua_State_release(atom_t a)
 
 PL_blob_t lua_State_blob =
 { .magic = PL_BLOB_MAGIC,
-  .flags = PL_BLOB_NOCOPY,
+  .flags = PL_BLOB_UNIQUE|PL_BLOB_NOCOPY,
   .name = "lua_State",
   .release = lua_State_release,
   .write = blob_write
