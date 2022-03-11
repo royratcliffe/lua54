@@ -11,7 +11,7 @@ all: $(SOBJ)
 
 $(PACKSODIR)/lua54.$(SOEXT): $(OBJ) $(OBJ54)
 	mkdir -p $(PACKSODIR)
-	$(LD) $(LDSOFLAGS) -o $@ $* $(SWISOLIB)
+	$(LD) $(LDSOFLAGS) -o $@ $^ $(SWISOLIB)
 
 check::
 install::
