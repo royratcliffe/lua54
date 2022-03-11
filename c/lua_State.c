@@ -19,7 +19,7 @@ PL_blob_t lua_State_blob =
 };
 
 void *
-l_alloc(void *unused1, void *mem, size_t unused3, size_t size)
+l_alloc(void *mem0, void *mem, size_t size0, size_t size)
 { if (size == 0)
   { PL_free(mem);
     return NULL;
