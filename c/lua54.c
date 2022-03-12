@@ -3,6 +3,14 @@
 #include "lua.h"
 
 foreign_t
+lua_newstate_1(term_t L)
+{ lua *lua = PL_malloc(sizeof(*lua));
+  if (lua == NULL) return PL_resource_error("memory");
+  memset(lua, 0, sizeof(*lua));
+  return unify_lua(L, lua) && lua_open_1(L);
+}
+
+foreign_t
 lua_open_1(term_t L)
 { lua *lua;
   if (!get_lua(L, &lua)) PL_fail;
@@ -18,14 +26,6 @@ lua_close_1(term_t L)
   lua_close(lua->L);
   lua->L = NULL;
   PL_succeed;
-}
-
-foreign_t
-lua_newstate_1(term_t L)
-{ lua *lua = PL_malloc(sizeof(*lua));
-  if (lua == NULL) return PL_resource_error("memory");
-  memset(lua, 0, sizeof(*lua));
-  return unify_lua(L, lua) && lua_open_1(L);
 }
 
 install_t
