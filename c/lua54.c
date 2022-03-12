@@ -40,8 +40,7 @@ lua_absindex_3(term_t Lua, term_t Index, term_t Abs)
 foreign_t
 lua_gettop_2(term_t Lua, term_t Top)
 { lua_State *L;
-  if (!get_lua_State(Lua, &L)) PL_fail;
-  return PL_unify_integer(Top, lua_gettop(L));
+  return get_lua_State(Lua, &L) && PL_unify_integer(Top, lua_gettop(L));
 }
 
 foreign_t
