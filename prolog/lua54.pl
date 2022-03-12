@@ -27,10 +27,23 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 :- module(lua54,
-    [ lua_newstate/1                      % -L
+    [ lua_newstate/1,                           % -L
+      lua_open/1,                               % +L
+      lua_close/1                               % +L
     ]).
 :- use_foreign_library(foreign(lua54)).
 
 %!  lua_newstate(-L) is det.
 %
-%   Opens a new Lua state at L.
+%   Opens a new Lua state at L. Implicitly opens the new state L; see
+%   lua_open/1 for details.
+
+%!  lua_open(+L) is det.
+%
+%   Opening a Lua state means creating and binding a `lua_State`
+%   instance.
+
+%!  lua_close(+L) is det.
+%
+%   Release the bound Lua state on success; fails if already closed. You
+%   can only successfully close an open Lua state, speaking from logic.

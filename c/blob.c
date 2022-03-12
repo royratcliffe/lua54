@@ -19,7 +19,7 @@ get_blob_ex(term_t t, PL_blob_t *expected, void **data)
  * the blob instance.
  */
 int
-blob_write(IOSTREAM *s, atom_t a, int flags)
+write_blob(IOSTREAM *s, atom_t a, int flags)
 { PL_blob_t *blob;
   void *data = PL_blob_data(a, NULL, &blob);
   Sfprintf(s, "<%s>(%p)", blob->name, data);
