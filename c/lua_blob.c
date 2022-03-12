@@ -46,3 +46,17 @@ get_lua(term_t t, lua **lua)
   *lua = data;
   PL_succeed;
 }
+
+/*
+ * Gets the underlying Lua state from a given term's Lua blob. Fails if
+ * the term does not describe a Lua blob, or if the Lua blob does not
+ * bind an open Lua state. The latter occurs after applying lua_close/1
+ * to a Lua blob.
+ */
+int
+get_lua_State(term_t t, lua_State **L)
+{ lua *lua;
+  if (!get_lua(t, &lua) || lua->L == NULL) PL_fail;
+  *L = lua->L;
+  PL_succeed;
+}
