@@ -6,7 +6,7 @@ foreign_t
 lua_open_1(term_t Lua)
 { lua *lua;
   if (!get_lua(Lua, &lua)) PL_fail;
-  lua->L = lua_newstate(l_alloc, NULL);
+  lua->L = lua_newstate(l_alloc, lua);
   if (lua->L == NULL) return PL_resource_error("memory");
   PL_succeed;
 }
