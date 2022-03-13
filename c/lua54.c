@@ -2,6 +2,11 @@
 #include "lua_blob.h"
 #include "lua.h"
 
+/*
+ * Include memory.h for memset on macOS.
+ */
+#include <memory.h>
+
 foreign_t
 lua_open_1(term_t Lua)
 { lua *lua;
