@@ -27,14 +27,19 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 :- module(lua54,
-    [ lua_open/1,                               % +L
+    [ % core
+      lua_open/1,                               % +L
       lua_newstate/1,                           % -L
       lua_close/1,                              % +L
 
       % stack manipulation
       lua_absindex/3,
       lua_gettop/2,
-      lua_settop/2
+      lua_settop/2,
+
+      % auxilliary functions & useful macros
+      luaL_dostring/2,
+      luaL_openlibs/1
     ]).
 :- use_foreign_library(foreign(lua54)).
 
@@ -42,7 +47,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 %!  lua_newstate(-L) is det.
 %!  lua_close(+L) is det.
 %
-%   Opening a Lua state means creating and binding a `lua_State`
+%   Opening a Lua state creates and binds a `lua_State`
 %   instance. Close and re-open a Lua state in order to start again from
 %   a fresh state while retaining the same standard streams.
 %
