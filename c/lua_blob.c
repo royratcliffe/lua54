@@ -48,6 +48,17 @@ get_lua(term_t t, lua **lua)
 }
 
 /*
+ * Accesses Lua blob at term `t` or fail. Raise a permission error
+ * unless the blob's Lua state exists, meaning not open.
+ */
+int
+get_lua_ex(term_t t, lua **lua)
+{ if (!get_lua(t, lua)) PL_fail;
+  if ((*lua)->L == NULL) return PL_permission_error("access", "lua", t);
+  PL_succeed;
+}
+
+/*
  * Gets the underlying Lua state from a given term's Lua blob. Fails if
  * the term does not describe a Lua blob, or if the Lua blob does not
  * bind an open Lua state. The latter occurs after applying lua_close/1
