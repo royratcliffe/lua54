@@ -71,3 +71,14 @@ get_lua_State(term_t t, lua_State **L)
   *L = lua->L;
   PL_succeed;
 }
+
+/*
+ * Access underlying Lua state. Raise permission error if not open.
+ */
+int
+get_lua_State_ex(term_t t, lua_State **L)
+{ lua *lua;
+  if (!get_lua_ex(t, &lua)) PL_fail;
+  *L = lua->L;
+  PL_succeed;
+}
