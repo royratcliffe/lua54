@@ -1,6 +1,8 @@
 #include "lua_prolog.h"
 #include "lua_blob.h"
 #include "lua.h"
+#include "lauxlib.h"
+#include "lualib.h"
 
 /*
  * Include memory.h for memset on macOS.
