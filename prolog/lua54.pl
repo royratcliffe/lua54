@@ -27,4 +27,43 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
 :- module(lua54,
-          []).
+    [ % core
+      lua_open/1,                               % +L
+      lua_newstate/1,                           % -L
+      lua_close/1,                              % +L
+
+      % stack manipulation
+      lua_absindex/3,
+      lua_gettop/2,
+      lua_settop/2,
+
+      % auxilliary functions & useful macros
+      luaL_dostring/2,
+      luaL_openlibs/1
+    ]).
+:- use_foreign_library(foreign(lua54)).
+
+%!  lua_open(+L) is det.
+%!  lua_newstate(-L) is det.
+%!  lua_close(+L) is det.
+%
+%   Opening a Lua state creates and binds a `lua_State`
+%   instance. Close and re-open a Lua state in order to start again from
+%   a fresh state while retaining the same standard streams.
+%
+%   New states also open a new Lua state at L. Implicitly
+%   opens the new state L; see lua_open/1 for details.
+%
+%   Asking for a new state means allocating a new Lua blob then opening
+%   a new underlying Lua state; either step can fail. The first fails by
+%   raising a memory resource exception as does the second.
+%
+%   Closing Lua releases the bound Lua state on success; fails if
+%   already closed. You can only successfully close an open Lua state,
+%   speaking from logic.
+
+%!  lua_absindex(+L, +Index, ?Abs) is semidet.
+%!  lua_gettop(+L, ?Top) is semidet.
+%!  lua_settop(+L, +Top) is det.
+%
+%   Basic stack manipulation.
